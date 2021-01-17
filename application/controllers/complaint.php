@@ -231,26 +231,35 @@ class Complaint extends CI_Controller {
                         $description .= "<br>Village : ".$this->input->post('signal_problem_village');
 
                         $complaint_array['signal_problem_district']=$this->input->post('signal_problem_district');
-                        $complaint_array['signal_problem_tehsil']=$this->input->post('signal_problem_tehsil');
-                        $complaint_array['signal_problem_markaz']=$this->input->post('signal_problem_markaz');
+                        $complaint_array['signal_problem_tehsil']=$this->input->post(
+						'signal_problem_tehsil');
+                        $complaint_array['signal_problem_markaz']=$this->input->post(
+						'signal_problem_markaz');
                         $complaint_array['signal_problem_uc']=$this->input->post('signal_problem_uc');
-                        $complaint_array['signal_problem_village']=$this->input->post('signal_problem_village');
+                        $complaint_array['signal_problem_village']=$this->input->post(
+						'signal_problem_village');
                         $resolution_time = "1 Working Day";
                         //$send_email = true;
 
                     }
                     elseif($complaint=='Balance Deduction'){
-                        $description = "Balance received on ".$this->input->post('balance_received_date');
-                        $description .= "<br> Balance deduction on ".$this->input->post('balance_deduction_date');
+                        $description = "Balance received on ".$this->input->post(
+						'balance_received_date');
+                        $description .= "<br> Balance deduction on ".$this->input->post(
+						'balance_deduction_date');
 
-                        $complaint_array['balance_received_date']=$this->input->post('balance_received_date');
-                        $complaint_array['balance_deduction_date']=$this->input->post('balance_deduction_date');
+                        $complaint_array['balance_received_date']=$this->input->post(
+						'balance_received_date');
+                        $complaint_array['balance_deduction_date']=$this->input->post(
+						'balance_deduction_date');
                         $resolution_time = "4 Hours";
                         //$send_email = true;
                     }
                     elseif($complaint=='Sim Mapping/Activation'){
-                        $description = $this->input->post('sim_mapping_activation_comments')."<br />ICCID will add in change status page after resolve the issue";
-                        $complaint_array['sim_mapping_activation_comments']=$this->input->post('sim_mapping_activation_comments');
+                        $description = $this->input->post('sim_mapping_activation_comments')."<br 
+						/>ICCID will add in change status page after resolve the issue";
+                        $complaint_array['sim_mapping_activation_comments']=$this->input->post(
+						'sim_mapping_activation_comments');
                         $resolution_time = "2 Hours";
                         //$send_email = true;
 
