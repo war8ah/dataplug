@@ -63,20 +63,39 @@ class Complaint extends CI_Controller {
 
             if($this->acl->hasPermission('complaint','view all complaints'))
             {
-                $apps = $this->complaint_model->get_complaint(null,$_GET['iDisplayStart'], $_GET['iDisplayLength'], $_GET['sSearch'], $_GET['iSortCol_0'], $_GET['sSortDir_0'], $_GET['sSearch_0'], $_GET['sSearch_1'], $_GET['sSearch_2'], $_GET['sSearch_3'], $_GET['sSearch_4'], $_GET['sSearch_5'], $_GET['sSearch_6'], $_GET['sSearch_7'], $_GET['sSearch_8'], $_GET['sSearch_9']);
+                $apps = $this->complaint_model->get_complaint(
+				null,$_GET['iDisplayStart'], $_GET['iDisplayLength'], $_GET['sSearch'], 
+				$_GET['iSortCol_0'], $_GET['sSortDir_0'], $_GET['sSearch_0'], 
+				$_GET['sSearch_1'], $_GET['sSearch_2'], $_GET['sSearch_3'], $_GET['sSearch_4'], 
+				$_GET['sSearch_5'], $_GET['sSearch_6'], $_GET['sSearch_7'], $_GET['sSearch_8'], 
+				$_GET['sSearch_9']);
 
-                $get_all_complaints = $this->complaint_model->get_complaint(null,null, null, $_GET['sSearch'], $_GET['iSortCol_0'], $_GET['sSortDir_0'], $_GET['sSearch_0'], $_GET['sSearch_1'], $_GET['sSearch_2'], $_GET['sSearch_3'], $_GET['sSearch_4'], $_GET['sSearch_5'], $_GET['sSearch_6'], $_GET['sSearch_7'], $_GET['sSearch_8'], $_GET['sSearch_9']);
+                $get_all_complaints = $this->complaint_model->get_complaint(
+				null,null, null, $_GET['sSearch'], $_GET['iSortCol_0'], $_GET['sSortDir_0'], 
+				$_GET['sSearch_0'], $_GET['sSearch_1'], $_GET['sSearch_2'], $_GET['sSearch_3'], 
+				$_GET['sSearch_4'], $_GET['sSearch_5'], $_GET['sSearch_6'], $_GET['sSearch_7'], 
+				$_GET['sSearch_8'], $_GET['sSearch_9']);
                 $total_complaints = count($get_all_complaints);
             }
             else{
 
-                $apps = $this->complaint_model->get_complaint($data['login_user_id'],$_GET['iDisplayStart'], $_GET['iDisplayLength'], $_GET['sSearch'], $_GET['iSortCol_0'], $_GET['sSortDir_0'], $_GET['sSearch_0'], $_GET['sSearch_1'], $_GET['sSearch_2'], $_GET['sSearch_3'], $_GET['sSearch_4'], $_GET['sSearch_5'], $_GET['sSearch_6'], $_GET['sSearch_7'], $_GET['sSearch_8'], $_GET['sSearch_9']);
+                $apps = $this->complaint_model->get_complaint(
+				$data['login_user_id'],$_GET['iDisplayStart'], $_GET['iDisplayLength'], 
+				$_GET['sSearch'], $_GET['iSortCol_0'], $_GET['sSortDir_0'], $_GET['sSearch_0'], 
+				$_GET['sSearch_1'], $_GET['sSearch_2'], $_GET['sSearch_3'], $_GET['sSearch_4'], 
+				$_GET['sSearch_5'], $_GET['sSearch_6'], $_GET['sSearch_7'], $_GET['sSearch_8'], 
+				$_GET['sSearch_9']);
 
-                $get_all_complaints = $this->complaint_model->get_complaint($data['login_user_id'],null, null, $_GET['sSearch'], $_GET['iSortCol_0'], $_GET['sSortDir_0'], $_GET['sSearch_0'], $_GET['sSearch_1'], $_GET['sSearch_2'], $_GET['sSearch_3'], $_GET['sSearch_4'], $_GET['sSearch_5'], $_GET['sSearch_6'], $_GET['sSearch_7'], $_GET['sSearch_8'], $_GET['sSearch_9']);
+                $get_all_complaints = $this->complaint_model->get_complaint(
+				$data['login_user_id'],null, null, $_GET['sSearch'], $_GET['iSortCol_0'], 
+				$_GET['sSortDir_0'], $_GET['sSearch_0'], $_GET['sSearch_1'], $_GET['sSearch_2'], 
+				$_GET['sSearch_3'], $_GET['sSearch_4'], $_GET['sSearch_5'], $_GET['sSearch_6'], 
+				$_GET['sSearch_7'], $_GET['sSearch_8'], $_GET['sSearch_9']);
                 $total_complaints = count($get_all_complaints);
 
 
-                //$apps = $this->complaint_model->get_complaint_by_user($data['login_user_id']);
+                //$apps = $this->complaint_model->get_complaint_by_user(
+				//$data['login_user_id']);
             }
             
             
@@ -128,8 +147,10 @@ class Complaint extends CI_Controller {
         $result='';
         if ($image) {
         $result='
-            <a style="padding-left:0px;" rel="lightbox['.$c_id.']" href="'.FORM_IMG_DISPLAY_PATH.'../../../../assets/complaints/'.$image.'">
-                <img class="formIconsUpload" src="'.FORM_IMG_DISPLAY_PATH.'../../../../assets/complaints/'.$image.'" alt="" />
+            <a style="padding-left:0px;" rel="lightbox['.$c_id.']" href="
+			'.FORM_IMG_DISPLAY_PATH.'../../../../assets/complaints/'.$image.'">
+                <img class="formIconsUpload" src="
+				'.FORM_IMG_DISPLAY_PATH.'../../../../assets/complaints/'.$image.'" alt="" />
             </a>';
 
         }
