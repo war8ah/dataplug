@@ -3263,7 +3263,8 @@ class App extends CI_Controller {
         $name_array=array();
         if($column=='location') {
             foreach ($result as $key => $val) {
-                $name_array[] = array("value" => str_replace(" ", " ", $val[$column]), 'text' => $val[$column]);
+                $name_array[] = array("value" => str_replace(
+				" ", " ", $val[$column]), 'text' => $val[$column]);
 
             }
         }else{
@@ -3278,9 +3279,11 @@ class App extends CI_Controller {
                     }
                 }else {
                     if($column=="sent_by"){
-                        $name_array[] = array("value" => str_replace(" ", " ", $val['imei_no']), 'text' => $val[$column]);
+                        $name_array[] = array("value" => str_replace(
+						" ", " ", $val['imei_no']), 'text' => $val[$column]);
                     }else {
-                        $name_array[] = array("value" => str_replace(" ", " ", $val[$column]), 'text' => $val[$column]);
+                        $name_array[] = array("value" => str_replace(
+						" ", " ", $val[$column]), 'text' => $val[$column]);
                     }
                 }
 
