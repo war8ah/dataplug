@@ -2757,7 +2757,8 @@ class App extends CI_Controller {
             $json_pins=json_encode($pins_arr);
             $form_result=$this->db->query("select * from map_pin_settings where form_id='$form_id'")->result_array();
             if(count($form_result)==0) {
-                if($this->db->query("insert into map_pin_settings (`form_id`,`pins`) values('$form_id','$json_pins')")){
+                if($this->db->query("insert into map_pin_settings (`form_id`,`pins`) 
+				values('$form_id','$json_pins')")){
                     echo "success";
                 }
             }else{
@@ -2779,7 +2780,8 @@ class App extends CI_Controller {
                 }
 
                 $json_pins=json_encode($final_result);
-                if($this->db->query("update map_pin_settings set pins='$json_pins' where form_id='$form_id'")){
+                if($this->db->query("update map_pin_settings set pins='$json_pins' 
+				where form_id='$form_id'")){
                     echo "success";
                 }
 
@@ -2831,7 +2833,8 @@ class App extends CI_Controller {
 
         $form_view_saved_form_id=$_POST['form_view_saved_form_id'];
 //        $table_columns=$this->form_model->get_form_filters($form_id_arr);
-        $table_columns=$this->form_results_model->getTableHeadingsFromSchema("zform_".$form_id);
+        $table_columns=$this->form_results_model->getTableHeadingsFromSchema("
+		zform_".$form_id);
 
 //        $table_filters=$table_columns[0]['possible_filters'];
 //        $table_filters=explode(",",$table_filters);
@@ -2844,7 +2847,8 @@ class App extends CI_Controller {
         }
         $all_columns[]='sent_by';
 
-        $exclude_array = array('id', 'form_id','location_source', 'activity_datetime','created_datetime','is_deleted');
+        $exclude_array = array('id', 'form_id','location_source', 
+		'activity_datetime','created_datetime','is_deleted');
         $possible_filters_array=array_diff($all_columns,$exclude_array);
         $option_string='';
         $final_array=array();
@@ -2858,7 +2862,8 @@ class App extends CI_Controller {
         }
 
         header('Content-Type: application/x-json; charset=utf-8');
-        $final_json = array('category' => $final_array, 'selected_options' => $selected_options);
+        $final_json = array('category' => $final_array, 
+		'selected_options' => $selected_options);
         echo json_encode($final_json);
     }
 
@@ -2899,7 +2904,8 @@ class App extends CI_Controller {
 
                             <link href="bootstrap.min.css" rel="stylesheet">
                             <link href="common.css" rel="stylesheet">
-                            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+                            <!-- HTML5 shim and Respond.js for IE8 support of HTML5 
+							elements and media queries -->
                             <!-- WARNING: Respond.js doesn\'t work if you view the page via file:// -->
                             <!--[if lt IE 9]>
                                   <script src="html5shiv.min.js"></script>
@@ -2941,7 +2947,8 @@ class App extends CI_Controller {
     }
 
     public function redirectFlashOnly() {
-        $this->session->set_flashdata('validate', array('message' => 'No Application Exists', 'type' => 'error'));
+        $this->session->set_flashdata('validate', array('message' => 
+		'No Application Exists', 'type' => 'error'));
         redirect(base_url() . 'apps');
     }
 
@@ -2988,12 +2995,15 @@ class App extends CI_Controller {
         if ($this->session->userdata('logged_in')) {
             $app_view_id = $slug;
             if (!$this->acl->hasPermission('app', 'delete')) {
-                $this->session->set_flashdata('validate', array('message' => "You don't have enough permissions to do this task.", 'type' => 'warning'));
+                $this->session->set_flashdata('validate', array('message' => 
+				"You don't have enough permissions to do this task.", 'type' => 'warning'));
                 redirect(base_url() . 'apps');
             }
             $this->db->delete('app_users_view', array('id' => $app_view_id));
-            //array parameters : action, description, before, after, app_id, app_name, form_id, form_name
-            $logary = array('action' => 'delete', 'description' => 'Delete user view', 'after' => 'user_view=' . $app_view_id);
+            //array parameters : action, description, before, 
+			//after, app_id, app_name, form_id, form_name
+            $logary = array('action' => 'delete', 'description' => '
+			Delete user view', 'after' => 'user_view=' . $app_view_id);
             addlog($logary);
             $this->session->set_flashdata('validate', array('message' => 'Application deleted successfully.', 'type' => 'success'));
             redirect(base_url() . 'app/appusersview');
