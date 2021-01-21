@@ -2529,7 +2529,8 @@ class App extends CI_Controller {
             }
             $result3=array_key_exists("RESULT_VIEW_SETTINGS",$settings_exist_new);
             if($result3!=''){
-                $result_view_settings_filter=$settings_exist_new['RESULT_VIEW_SETTINGS']['filters'];
+                $result_view_settings_filter=$settings_exist_new[
+				'RESULT_VIEW_SETTINGS']['filters'];
             }
             $result4=array_key_exists("MAP_VIEW_SETTINGS",$settings_exist_new);
             if($result4!=''){
@@ -2537,7 +2538,8 @@ class App extends CI_Controller {
             }
             $result5=array_key_exists("GRAPH_VIEW_SETTINGS",$settings_exist_new);
             if($result5!=''){
-                $graph_view_settings_filter=$settings_exist_new['GRAPH_VIEW_SETTINGS']['filters'];
+                $graph_view_settings_filter=$settings_exist_new['
+				GRAPH_VIEW_SETTINGS']['filters'];
             }
             $result6=array_key_exists("SMS_SETTINGS",$settings_exist_new);
             if($result6!=''){
@@ -2556,8 +2558,10 @@ class App extends CI_Controller {
             //first form...
             foreach($all_forms as $key=>$val){
                 $form_id=$val['form_id'];
-                $fields=$this->form_results_model->getTableHeadingsFromSchema("zform_".$form_id);
-                $exclude_array = array('id', 'form_id', 'is_deleted', 'location_source', 'created_datetime');
+                $fields=$this->form_results_model->getTableHeadingsFromSchema(
+				"zform_".$form_id);
+                $exclude_array = array('id', 'form_id', 'is_deleted', 
+				'location_source', 'created_datetime');
                 $filterd_fileds=array();
                 $required_fields=array();
                 $table_name="zform_$form_id";
@@ -2571,7 +2575,8 @@ class App extends CI_Controller {
                 }
                 $required_fields[$form_id]=$filterd_fileds;
 
-                $table_result = $this->form_results_model->getTableHeadingsFromSchema($table_name);
+                $table_result = $this->form_results_model->getTableHeadingsFromSchema(
+				$table_name);
                 $schema_columns=array();
                 foreach($table_result as $key=>$val){
                     if(!in_array($val['COLUMN_NAME'],$exclude_array)) {
